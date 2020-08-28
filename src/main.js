@@ -6,6 +6,7 @@ import router from './router'
 import Vuetify from 'vuetify'
 import config from './config'
 import MyComponent from './components/MyComponent'
+import Element from 'element-ui'
 import './http';
 import 'vuetify/dist/vuetify.min.css'
 import qs from 'qs'
@@ -14,6 +15,7 @@ import './assets/material.css'
 
 Vue.use(Vuetify, { theme: config.theme})
 Vue.use(MyComponent)
+Vue.use(Element)
 Vue.prototype.$qs = qs;
 
 Vue.config.productionTip = false
