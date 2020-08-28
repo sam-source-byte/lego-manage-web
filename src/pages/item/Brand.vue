@@ -14,8 +14,8 @@
       :headers="headers"
       :items="brands"
       :search="search"
-      :pagination.sync="pagination"
-      :total-items="totalBrands"
+      :options.sync="pagination"
+      :server-items-length="totalBrands"
       :loading="loading"
       class="elevation-1"
     >
@@ -89,7 +89,8 @@
     watch: {
       pagination: { // 监视pagination属性的变化
         deep: true, // deep为true，会监视pagination的属性及属性中的对象属性变化
-        handler() {
+        handler(v, o) {
+          console.log(v)
           // 变化后的回调函数，这里我们再次调用getDataFromServer即可
           this.getDataFromServer();
         }
@@ -113,6 +114,7 @@
             desc: this.pagination.descending// 是否降序
           }
         }).then(resp => { // 这里使用箭头函数
+          console.log(resp.data)
           this.brands = resp.data.items;
           this.totalBrands = resp.data.total;
           // 完成赋值后，把加载状态赋值为false
